@@ -84,7 +84,7 @@ Complete non-interactive GitHub Raw example (download + execute):
 curl -fL -o /tmp/vps-dd-debian12.sh \
   https://raw.githubusercontent.com/blueinx/vps-system-reinstall/main/vps-dd-debian12.sh
 chmod +x /tmp/vps-dd-debian12.sh
-sudo /tmp/vps-dd-debian12.sh \
+sudo bash /tmp/vps-dd-debian12.sh \
   --yes --password 'YourStrongPassword' --disk /dev/vda --reboot
 ```
 
