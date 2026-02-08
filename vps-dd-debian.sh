@@ -335,7 +335,12 @@ verify_sum(){
   local rel="$2"
   local expected actual
 
-  expected="$(awk -v p="${rel}" '{f=$2; sub(/^\\.\\//,"",f); sub(/^\\*/,"",f); if(f==p){print $1; exit}}' "${WORKDIR}/SHA256SUMS")"
+  expected="$(awk -v p="${rel}" '{
+    f=$2
+    if (substr(f,1,1) == "*") f=substr(f,2)
+    if (substr(f,1,2) == "./") f=substr(f,3)
+    if (f == p) { print $1; exit }
+  }' "${WORKDIR}/SHA256SUMS")"
   [[ -n "${expected}" ]] || die "Missing checksum entry: ${rel}"
 
   actual="$(sha256sum "${file}" | awk '{print $1}')"
