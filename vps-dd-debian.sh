@@ -3,6 +3,7 @@ set -Eeuo pipefail
 umask 077
 
 SCRIPT_NAME="${0##*/}"
+SCRIPT_VERSION="2026.02.08-2"
 ENTRY_BASENAME="debian-dd-reinstall"
 WORKDIR_BASE="/boot/dd-debian"
 GRUB_SNIPPET="/etc/grub.d/09_dd_debian"
@@ -586,6 +587,7 @@ main(){
   fi
 
   configure_release
+  log "Script version: ${SCRIPT_VERSION}"
   validate_inputs
   require_root
   detect_arch
